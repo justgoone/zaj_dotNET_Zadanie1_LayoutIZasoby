@@ -1,0 +1,66 @@
+﻿<Application x:Class="LayoutIZasoby.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:LayoutIZasoby"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="LabelCzerwony" Color="#900"/>
+        <SolidColorBrush x:Key="ButtonTło" Color="#EAE"/>
+        <SolidColorBrush x:Key="ButtonStaticColor" Color="#DDF"/>
+        <SolidColorBrush x:Key="ButtonHoverColor" Color="#99D"/>
+        <SolidColorBrush x:Key="ButtonClickedColor" Color="#99F"/>
+        
+        <Style
+            TargetType="Label"
+            >
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="FontSize" Value="24"/>
+        </Style>
+        
+        <ControlTemplate x:Key="ButtonTemplate1" TargetType="{x:Type ButtonBase}">
+            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsDefaulted" Value="true">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource ButtonStaticColor}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{DynamicResource ButtonHoverColor}"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="true">
+                    <Setter Property="Background" TargetName="border" Value="{DynamicResource ButtonClickedColor}"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        
+        <Style
+            x:Key="SpecialLabel"
+            TargetType="Label"
+            BasedOn="{StaticResource {x:Type Label}}"
+            >
+            <Setter Property="Foreground" Value="{DynamicResource LabelCzerwony}"/>
+        </Style>
+
+        <Style
+            x:Key="Button1"
+            TargetType="Button"
+            >
+            <Setter Property="Background" Value="{DynamicResource ButtonTło}"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style
+            x:Key="Button2"
+            TargetType="Button"
+            >
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Background" Value="{DynamicResource ButtonStaticColor}"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Black"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Application.Resources>
+</Application>
